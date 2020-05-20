@@ -123,6 +123,9 @@ BOOL hasCycleByArray(ListNode *list) {
 O(n),O(1)
 */
 BOOL hasCycleBySlowFastPointer(ListNode *list) {
+    if (list == nil || list->next == nil) {
+        return NO;
+    }
     ListNode *slowNode = list->next;
     ListNode *fastNode = list->next->next;
     while (slowNode != fastNode) {
