@@ -63,7 +63,7 @@ int my_atoi(NSString *str) {
     int sign = 1;
     char *cstr = (char *)[str cStringUsingEncoding:NSUTF8StringEncoding];
     NSMutableString *numStr = [NSMutableString string];
-    if (cstr[i] == '-' || cstr[i] == '+' || cstr[i] == ' ' || !(cstr[i] >= '0' && cstr[i] <= '9')) {
+    if (!(cstr[i] == '-' || cstr[i] == '+' || cstr[i] == ' ') && !(cstr[i] >= '0' && cstr[i] <= '9')) {
         return 0;
     }
     while (i < str.length) {
@@ -87,7 +87,19 @@ int my_atoi(NSString *str) {
         i++;
     }
     if (numStr.length) {
-        return [numStr intValue];
+        if (sign > 0) {
+            if ([numStr integerValue]*sign >= INT_MAX) {
+                return INT_MAX;
+            }else {
+                return [numStr intValue]*sign;
+            }
+        }else {
+            if ([numStr integerValue]*sign <= INT_MIN) {
+                return INT_MIN;
+            }else {
+                return [numStr intValue]*sign;
+            }
+        }
     }
     
     return 0;
@@ -95,7 +107,7 @@ int my_atoi(NSString *str) {
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        int num = my_atoi(@"42");
+        int num = my_atoi(@"12yuqin");
         
         NSLog(@"num:%d", num);
     }
