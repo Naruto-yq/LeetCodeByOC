@@ -29,6 +29,10 @@
  O(n),O(n)
  */
 int majorityElementByHashmap(NSArray* nums) {
+//    if (nums == nil || !nums.count) {
+//        return -1;
+//    }
+    
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     
     for (int i=0; i<nums.count; i++) {
@@ -48,10 +52,13 @@ int majorityElementByHashmap(NSArray* nums) {
 }
 
 /*
-解法二：遍历数组遇到相同数字+1，不相同数字-1. 众数的count一定是大于1
+解法二：遍历数组遇到相同数字+1，不相同数字-1. 众数的count一定是大于等于0
 O(n),O(1)
 */
 int majorityElement(NSArray* nums) {
+//    if (nums == nil || !nums.count) {
+//        return -1;
+//    }
     int count = 0;
     int majorityElem = [nums[0] intValue];
     for (NSNumber *elem in nums) {
@@ -67,9 +74,9 @@ int majorityElement(NSArray* nums) {
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         NSArray *arr1 = @[@3,@2,@3];
-        NSArray *arr2 = @[@2,@2,@1,@1,@1,@2,@2];
+        NSArray *arr2 = @[@2,@2,@1,@1,@1,@3,@2,@2];
         int elem1 = majorityElementByHashmap(arr2);
-        int elem2 = majorityElement(arr1);
+        int elem2 = majorityElement(arr2);
         NSLog(@"多数元素 : %d", elem2);
     }
     return 0;
