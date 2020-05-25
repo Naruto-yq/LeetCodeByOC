@@ -33,6 +33,10 @@
  二分查找法
  */
 int search(NSArray* nums, int target) {
+    if (nums == nil || nums.count < 1) {
+        return -1;
+    }
+    
     int l=0,r=nums.count-1;
     
     while (l<=r) {
